@@ -14,16 +14,18 @@
 
 // Execute `rustlings hint hashmaps3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+
 
 use std::collections::HashMap;
 
 // A structure to store team name and its goal details.
+#[derive(Debug)]
 struct Team {
     name: String,
     goals_scored: u8,
     goals_conceded: u8,
 }
+
 
 fn build_scores_table(results: String) -> HashMap<String, Team> {
     // The name of the team is the key and its associated struct is the value.
@@ -40,6 +42,31 @@ fn build_scores_table(results: String) -> HashMap<String, Team> {
         // will be number of goals conceded from team_2, and similarly
         // goals scored by team_2 will be the number of goals conceded by
         // team_1.
+    
+        // let team2_name = team_2_name.clone();
+        // let mut teamDefault = Team { name: team2_name, goals_scored: 0, goals_conceded: 0 };
+        // let team2_name = team_2_name.clone();
+        // let  team2 : &mut Team  = scores.entry(team2_name).or_insert(teamDefault);
+        // team2.goals_scored += team_2_score;
+        // team2.goals_conceded += team_1_score;
+
+        // let team = update_team(team_1_name, &mut scores, (team_1_score, team_2_score));
+
+
+        let teamDefault = Team { name:  team_1_name.clone(), goals_scored: 0, goals_conceded: 0 };
+        let team1 : &mut Team  = scores.entry( team_1_name.clone()).or_insert(teamDefault);
+        team1.goals_scored += team_1_score;
+        team1.goals_conceded += team_2_score;
+     
+        let teamDefault = Team { name:  team_2_name.clone(), goals_scored: 0, goals_conceded: 0 };
+        let team2 : &mut Team  = scores.entry( team_2_name.clone()).or_insert(teamDefault);
+        team2.goals_scored += team_2_score;
+        team2.goals_conceded += team_1_score;
+
+
+        // let team2 = update_team(team_2_name, &mut scores, (team_2_score, team_1_score));
+       
+
     }
     scores
 }
